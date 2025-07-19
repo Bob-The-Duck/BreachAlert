@@ -1,93 +1,70 @@
-document.getElementById('checkButton').addEventListener('click', checkBreaches);
+document.getElementById('checkButton').addEventListener('click', checkPassword);
 
-async function checkBreaches() {
-    const email = document.getElementById('emailInput').value.trim();
+async function checkPassword() {
+    const password = document.getElementById('passwordInput').value.trim();
     
-    if (!validateEmail(email)) {
-        showResult('❌ Proszę podać poprawny adres e-mail');
+    if (!password) {
+        showResult('❌ Wpisz hasło do sprawdzenia');
         return;
     }
 
     document.getElementById('result').innerHTML = `
-        <div class="loading">
-            <p>🔍 Sprawdzam bezpieczeństwo adresu: <b>${email}</b>...</p>
-        </div>
+        <p>🔍 Sprawdzam bezpieczeństwo hasła...</p>
     `;
 
     try {
-        const breaches = await fetchBreaches(email);
-        displayResults(email, breaches);
+        // Hashowanie hasła SHA-1 przed wysłaniem
+        const hashedPassword = await sha1(password);
+        const result = await checkXposedOrNot(hashedPassword);
+        displayResult(result);
     } catch (error) {
-        console.error('Błąd:', error);
-        showResult(`❌ Wystąpił błąd: ${error.message}`);
+        showResult(`❌ Błąd: ${error.message}`);
     }
 }
 
-function validateEmail(email) {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+async function sha1(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-1', msgBuffer);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    return hashHex.toUpperCase();
 }
 
-async function fetchBreaches(email) {
-    const response = await fetch(`https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(email)}`, {
-        headers: {
-            'User-Agent': 'BreachAlert/1.0' // WYMAGANE przez HIBP v2
-        }
-    });
-
-    if (response.status === 404) return []; // Brak wycieków
-    if (response.status === 429) throw new Error('Za dużo zapytań! Poczekaj 1.5 sekundy.');
-    if (!response.ok) throw new Error(`Błąd API: ${response.status}`);
-
+async function checkXposedOrNot(hashedPassword) {
+    const response = await fetch(`https://api.xposedornot.com/v1/pwned/${hashedPassword}`);
+    
+    if (!response.ok) {
+        throw new Error('Problem z połączeniem z API');
+    }
+    
     return response.json();
 }
 
-function displayResults(email, breaches) {
+function displayResult(data) {
     const resultDiv = document.getElementById('result');
     
-    if (breaches.length === 0) {
+    if (data.pwned) {
         resultDiv.innerHTML = `
-            <div class="safe-result">
-                <h2>🛡️ Brak wycieków!</h2>
-                <p>Adres <b>${email}</b> nie został znaleziony w żadnych znanych wyciekach danych.</p>
-            </div>
-        `;
-        return;
-    }
-
-    let breachesHTML = `
-        <div class="breach-header">
-            <h2>⚠️ WYKRYTO WYCIEKI!</h2>
-            <p>Adres <b>${email}</b> został ujawniony w <b>${breaches.length}</b> wyciekach:</p>
-        </div>
-    `;
-
-    breaches.forEach(breach => {
-        breachesHTML += `
-            <div class="breach-card">
-                <h3 class="breach-title">${breach.Title}</h3>
-                <div class="breach-data">
-                    <span class="data-badge">📅 ${breach.BreachDate}</span>
-                    <span class="data-badge">👥 ${breach.PwnCount?.toLocaleString() || 'N/A'} kont</span>
-                </div>
-                <p><strong>Opis:</strong> ${breach.Description || 'Brak opisu'}</p>
-            </div>
-        `;
-    });
-
-    breachesHTML += `
-        <div class="recommendations">
-            <h3>🛡️ Zalecenia bezpieczeństwa:</h3>
+            <p class="breach-found">⚠️ HASŁO WYCIEKŁO!</p>
+            <p>Znalezione w <b>${data.count}</b> wyciekach.</p>
+            <p>Ostatni wyciek: <b>${data.last_seen || 'nieznana data'}</b></p>
+            <p><b>Zalecenia:</b></p>
             <ul>
-                <li>Natychmiast zmień hasła na wszystkich powiązanych kontach</li>
-                <li>Włącz weryfikację dwuetapową (2FA)</li>
-                <li>Użyj menedżera haseł (np. Bitwarden, KeePass)</li>
+                <li>Natychmiast zmień to hasło wszędzie gdzie go używasz</li>
+                <li>Użyj unikalnego hasła dla każdej usługi</li>
+                <li>Rozważ użycie menedżera haseł</li>
             </ul>
-            <p class="more-info">ℹ️ Więcej informacji: <a href="https://haveibeenpwned.com/" target="_blank">haveibeenpwned.com</a></p>
-        </div>
-    `;
-
-    resultDiv.innerHTML = breachesHTML;
+        `;
+    } else {
+        resultDiv.innerHTML = `
+            <p class="safe">✅ To hasło nie zostało znalezione w znanych wyciekach</p>
+            <p>Jednak dla bezpieczeństwa:</p>
+            <ul>
+                <li>Upewnij się, że hasło ma co najmniej 12 znaków</li>
+                <li>Użyj kombinacji liter, cyfr i symboli</li>
+            </ul>
+        `;
+    }
 }
 
 function showResult(message) {
