@@ -12,6 +12,13 @@ async function checkPassword() {
         <p>🔍 Sprawdzam bezpieczeństwo hasła...</p>
     `;
 
+    try {
+        const data = await checkXposedOrNot(password);
+        displayResult(data);
+    } catch (error) {
+        showResult(`❌ Wystąpił błąd: ${error.message}`);
+    }
+}
 
 async function checkXposedOrNot(password) {
     const response = await fetch(`https://api.xposedornot.com/v1/check-email/${password}`);
