@@ -1,27 +1,33 @@
-document.getElementById('checkButton').addEventListener('click', checkPassword);
+document.getElementById('checkButton').addEventListener('click', checkEmail);
 
-async function checkPassword() {
-    const password = document.getElementById('passwordInput').value.trim();
+async function checkEmail() {
+    const email = document.getElementById('emailInput').value.trim();
     
-    if (!password) {
-        showResult('❌ Wpisz hasło do sprawdzenia');
+    if (!validateEmail(email)) {
+        showResult('❌ Wpisz poprawny adres e-mail');
         return;
     }
 
     document.getElementById('result').innerHTML = `
-        <p>🔍 Sprawdzam bezpieczeństwo hasła...</p>
+        <p>🔍 Sprawdzam czy adres <b>${email}</b> pojawił się w wyciekach...</p>
     `;
 
     try {
-        const data = await checkXposedOrNot(password);
-        displayResult(data);
+        const data = await checkXposedOrNot(email);
+        displayResult(email, data);
     } catch (error) {
         showResult(`❌ Wystąpił błąd: ${error.message}`);
     }
 }
 
-async function checkXposedOrNot(password) {
-    const response = await fetch(`https://api.xposedornot.com/v1/check-email/${password}`);
+// Walidacja e-maila
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+}
+
+async function checkXposedOrNot(email) {
+    const response = await fetch(`https://api.xposedornot.com/v1/check-email/${encodeURIComponent(email)}`);
     
     if (!response.ok) {
         throw new Error('Problem z połączeniem z API');
@@ -30,28 +36,31 @@ async function checkXposedOrNot(password) {
     return response.json();
 }
 
-function displayResult(data) {
+function displayResult(email, data) {
     const resultDiv = document.getElementById('result');
     
     if (data.pwned) {
         resultDiv.innerHTML = `
-            <p class="breach-found">⚠️ HASŁO WYCIEKŁO!</p>
-            <p>Znalezione w <b>${data.count}</b> wyciekach.</p>
+            <p class="breach-found">⚠️ E-MAIL WYCIEKŁ!</p>
+            <p>Adres <b>${email}</b> znaleziono w <b>${data.count}</b> wyciekach.</p>
             <p>Ostatni wyciek: <b>${data.last_seen || 'nieznana data'}</b></p>
             <p><b>Zalecenia:</b></p>
             <ul>
-                <li>Natychmiast zmień to hasło wszędzie gdzie go używasz</li>
-                <li>Użyj unikalnego hasła dla każdej usługi</li>
-                <li>Rozważ użycie menedżera haseł</li>
+                <li>Natychmiast zmień hasła na wszystkich kontach używających tego e-maila</li>
+                <li>Włącz weryfikację dwuetapową (2FA) gdzie tylko możesz</li>
+                <li>Sprawdź czy nie masz podejrzanych aktywności na kontach</li>
+                <li>Rozważ użycie aliasów e-mail dla różnych serwisów</li>
             </ul>
+            <p>ℹ️ Więcej informacji: <a href="https://haveibeenpwned.com/" target="_blank">haveibeenpwned.com</a></p>
         `;
     } else {
         resultDiv.innerHTML = `
-            <p class="safe">✅ To hasło nie zostało znalezione w znanych wyciekach</p>
-            <p>Jednak dla bezpieczeństwa:</p>
+            <p class="safe">✅ Adres <b>${email}</b> nie został znaleziony w znanych wyciekach</p>
+            <p><b>Dobre praktyki:</b></p>
             <ul>
-                <li>Upewnij się, że hasło ma co najmniej 12 znaków</li>
-                <li>Użyj kombinacji liter, cyfr i symboli</li>
+                <li>Używaj unikalnych haseł dla każdej usługi</li>
+                <li>Regularnie sprawdzaj czy Twój e-mail nie wyciekł</li>
+                <li>Włącz powiadomienia o nowych wyciekach</li>
             </ul>
         `;
     }
