@@ -12,25 +12,8 @@ async function checkPassword() {
         <p>🔍 Sprawdzam bezpieczeństwo hasła...</p>
     `;
 
-    try {
-        // Hashowanie hasła SHA-1 przed wysłaniem
-        const hashedPassword = await sha1(password);
-        const result = await checkXposedOrNot(hashedPassword);
-        displayResult(result);
-    } catch (error) {
-        showResult(`❌ Błąd: ${error.message}`);
-    }
-}
 
-async function sha1(message) {
-    const msgBuffer = new TextEncoder().encode(message);
-    const hashBuffer = await crypto.subtle.digest('SHA-1', msgBuffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-    return hashHex.toUpperCase();
-}
-
-async function checkXposedOrNot(hashedPassword) {
+async function checkXposedOrNot(password) {
     const response = await fetch(`https://api.xposedornot.com/v1/check-email/${password}`);
     
     if (!response.ok) {
