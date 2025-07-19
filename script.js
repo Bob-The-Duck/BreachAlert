@@ -1,1 +1,96 @@
-function _0x48e8(_0x40209e,_0x3f102d){const _0x30988d=_0x3098();return _0x48e8=function(_0x48e858,_0x454966){_0x48e858=_0x48e858-0x67;let _0x345cd3=_0x30988d[_0x48e858];return _0x345cd3;},_0x48e8(_0x40209e,_0x3f102d);}const _0x38ff65=_0x48e8;(function(_0x2c64aa,_0x1bb1c6){const _0x597fba=_0x48e8,_0x1babe1=_0x2c64aa();while(!![]){try{const _0x427d2f=parseInt(_0x597fba(0x94))/0x1+parseInt(_0x597fba(0x85))/0x2+parseInt(_0x597fba(0x8e))/0x3+parseInt(_0x597fba(0x7f))/0x4*(parseInt(_0x597fba(0x80))/0x5)+parseInt(_0x597fba(0x8c))/0x6+-parseInt(_0x597fba(0x8f))/0x7+parseInt(_0x597fba(0x90))/0x8*(-parseInt(_0x597fba(0x7c))/0x9);if(_0x427d2f===_0x1bb1c6)break;else _0x1babe1['push'](_0x1babe1['shift']());}catch(_0x59aa81){_0x1babe1['push'](_0x1babe1['shift']());}}}(_0x3098,0x424cc),document[_0x38ff65(0x7b)](_0x38ff65(0x72),()=>{const _0x8f517d=_0x38ff65,_0x1d6841=document[_0x8f517d(0x83)](_0x8f517d(0x68)),_0x1fa316=document[_0x8f517d(0x83)](_0x8f517d(0x73)),_0x18d3be=document[_0x8f517d(0x83)]('result'),_0xd8d5e8=async()=>{const _0x586d41=_0x8f517d,_0x4bee2b=_0x1fa316[_0x586d41(0x91)][_0x586d41(0x7e)]();if(!_0x460cb0(_0x4bee2b)){_0x1426e7(_0x586d41(0x77));return;}_0x1426e7(_0x586d41(0x70));try{const _0x41415f=await _0x24d1a2(_0x4bee2b);_0x401d2c(_0x4bee2b,_0x41415f);}catch(_0x4c759c){_0x1426e7('❌\x20Wystąpił\x20błąd:\x20'+_0x4c759c[_0x586d41(0x82)]);}},_0x460cb0=_0xc78b79=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/[_0x8f517d(0x92)](_0xc78b79),_0x24d1a2=async _0x345c3b=>{const _0x2a86f=_0x8f517d,_0x358e5c=await fetch(_0x2a86f(0x8d)+encodeURIComponent(_0x345c3b),{'headers':{'User-Agent':_0x2a86f(0x88)}});if(_0x358e5c['status']===0x194)return[];if(_0x358e5c[_0x2a86f(0x6f)]===0x1ad)return await new Promise(_0x469813=>setTimeout(_0x469813,0x5dc)),_0x24d1a2(_0x345c3b);if(!_0x358e5c['ok'])throw new Error(_0x2a86f(0x87)+_0x358e5c['status']);return _0x358e5c[_0x2a86f(0x6a)]();},_0x401d2c=(_0x59257d,_0x17030d)=>{const _0x4e95f6=_0x8f517d;if(_0x17030d[_0x4e95f6(0x74)]===0x0){_0x18d3be['innerHTML']=_0x4e95f6(0x67)+_0x59257d+'</b>\x20nie\x20został\x20znaleziony\x20w\x20żadnych\x20znanych\x20wyciekach\x20danych.</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20';return;}let _0x3594b4=_0x4e95f6(0x8a)+_0x59257d+_0x4e95f6(0x79)+_0x17030d['length']+_0x4e95f6(0x76);_0x17030d['forEach'](_0x45ac80=>{const _0x255133=_0x4e95f6;_0x3594b4+=_0x255133(0x93)+_0x45ac80[_0x255133(0x7d)]+_0x255133(0x8b)+_0x45ac80[_0x255133(0x86)]+_0x255133(0x95)+(_0x45ac80[_0x255133(0x6d)]?.[_0x255133(0x69)]()||_0x255133(0x6c))+_0x255133(0x78)+(_0x45ac80[_0x255133(0x81)]||_0x255133(0x84))+_0x255133(0x89);}),_0x3594b4+=_0x4e95f6(0x6e),_0x18d3be[_0x4e95f6(0x71)]=_0x3594b4;},_0x1426e7=_0x4bd8b6=>{const _0x5a829d=_0x8f517d;_0x18d3be[_0x5a829d(0x71)]=_0x4bd8b6;};_0x1d6841['addEventListener']('click',_0xd8d5e8),_0x1fa316[_0x8f517d(0x7b)](_0x8f517d(0x6b),_0x53242c=>{const _0x3b4c3c=_0x8f517d;if(_0x53242c[_0x3b4c3c(0x7a)]===_0x3b4c3c(0x75))_0xd8d5e8();});}));function _0x3098(){const _0x198793=['PwnCount','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22recommendations\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3>🛡️\x20Zalecenia\x20bezpieczeństwa:</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>Natychmiast\x20zmień\x20hasła\x20na\x20wszystkich\x20powiązanych\x20kontach</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>Włącz\x20weryfikację\x20dwuetapową\x20(2FA)</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<li>Użyj\x20menedżera\x20haseł\x20(np.\x20Bitwarden,\x20KeePass)</li>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</ul>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','status','<div\x20class=\x22loading\x22>🔍\x20Sprawdzam\x20bezpieczeństwo\x20adresu...</div>','innerHTML','DOMContentLoaded','emailInput','length','Enter','</b>\x20wyciekach:</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','❌\x20Proszę\x20podać\x20poprawny\x20adres\x20e-mail','\x20kont</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p><strong>Opis:</strong>\x20','</b>\x20został\x20ujawniony\x20w\x20<b>','key','addEventListener','9IdLgaP','Title','trim','80832gcTyPU','30TQUFps','Description','message','getElementById','Brak\x20opisu','486646bWUnbq','BreachDate','API\x20zwróciło\x20status\x20','BreachAlert/2.0','</p>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22breach-header\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2>⚠️\x20WYKRYTO\x20WYCIEKI!</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Adres\x20<b>','</h3>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22breach-data\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22data-badge\x22>📅\x20','2180178BWTzmd','https://haveibeenpwned.com/api/v2/breachedaccount/','475374NTTsNo','1327158UqCeZS','6782024rgyIfi','value','test','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22breach-card\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20class=\x22breach-title\x22>','422519zHksEK','</span>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20class=\x22data-badge\x22>👥\x20','\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22safe-result\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h2>🛡️\x20Brak\x20wycieków!</h2>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<p>Adres\x20<b>','checkButton','toLocaleString','json','keypress','N/A'];_0x3098=function(){return _0x198793;};return _0x3098();}
+document.addEventListener('DOMContentLoaded', () => {
+    const checkButton = document.getElementById('checkButton');
+    const emailInput = document.getElementById('emailInput');
+    const resultDiv = document.getElementById('result');
+
+    const checkEmail = async () => {
+        const email = emailInput.value.trim();
+        
+        if (!validateEmail(email)) {
+            showResult('❌ Proszę podać poprawny adres e-mail');
+            return;
+        }
+
+        showResult('<div class="loading">🔍 Sprawdzam bezpieczeństwo adresu...</div>');
+
+        try {
+            const data = await fetchBreaches(email);
+            displayResults(email, data);
+        } catch (error) {
+            showResult(`❌ Wystąpił błąd: ${error.message}`);
+        }
+    };
+
+    const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    const fetchBreaches = async (email) => {
+        const response = await fetch(`https://haveibeenpwned.com/api/v2/breachedaccount/${encodeURIComponent(email)}`, {
+            headers: {
+                'User-Agent': 'BreachAlert/2.0'
+            }
+        });
+
+        if (response.status === 404) return [];
+        if (response.status === 429) {
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            return fetchBreaches(email);
+        }
+        if (!response.ok) throw new Error(`API zwróciło status ${response.status}`);
+
+        return response.json();
+    };
+
+    const displayResults = (email, breaches) => {
+        if (breaches.length === 0) {
+            resultDiv.innerHTML = `
+                <div class="safe-result">
+                    <h2>🛡️ Brak wycieków!</h2>
+                    <p>Adres <b>${email}</b> nie został znaleziony w żadnych znanych wyciekach danych.</p>
+                </div>
+            `;
+            return;
+        }
+
+        let breachesHTML = `
+            <div class="breach-header">
+                <h2>⚠️ WYKRYTO WYCIEKI!</h2>
+                <p>Adres <b>${email}</b> został ujawniony w <b>${breaches.length}</b> wyciekach:</p>
+            </div>
+        `;
+
+        breaches.forEach(breach => {
+            breachesHTML += `
+                <div class="breach-card">
+                    <h3 class="breach-title">${breach.Title}</h3>
+                    <div class="breach-data">
+                        <span class="data-badge">📅 ${breach.BreachDate}</span>
+                        <span class="data-badge">👥 ${breach.PwnCount?.toLocaleString() || 'N/A'} kont</span>
+                    </div>
+                    <p><strong>Opis:</strong> ${breach.Description || 'Brak opisu'}</p>
+                </div>
+            `;
+        });
+
+        breachesHTML += `
+            <div class="recommendations">
+                <h3>🛡️ Zalecenia bezpieczeństwa:</h3>
+                <ul>
+                    <li>Natychmiast zmień hasła na wszystkich powiązanych kontach</li>
+                    <li>Włącz weryfikację dwuetapową (2FA)</li>
+                    <li>Użyj menedżera haseł (np. Bitwarden, KeePass)</li>
+                </ul>
+            </div>
+        `;
+
+        resultDiv.innerHTML = breachesHTML;
+    };
+
+    const showResult = (message) => {
+        resultDiv.innerHTML = message;
+    };
+
+    checkButton.addEventListener('click', checkEmail);
+    emailInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkEmail();
+    });
+});
