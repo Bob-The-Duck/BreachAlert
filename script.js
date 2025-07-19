@@ -31,7 +31,7 @@ async function sha1(message) {
 }
 
 async function checkXposedOrNot(hashedPassword) {
-    const response = await fetch(`https://api.xposedornot.com/v1/pwned/${hashedPassword}`);
+    const response = await fetch(`https://api.xposedornot.com/v1/check-email/${password}`);
     
     if (!response.ok) {
         throw new Error('Problem z połączeniem z API');
