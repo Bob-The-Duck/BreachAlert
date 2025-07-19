@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sprawdź wyciek e-maila</title>
+    <title>BreachAlert - Sprawdź wycieki e-maili</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -11,15 +11,19 @@
         <h1>🔍 Sprawdź czy Twój e-mail wyciekł</h1>
         
         <div class="search-box">
-            <input type="email" id="emailInput" placeholder="np. przyklad@domena.pl">
+            <input type="email" id="emailInput" placeholder="Wpisz swój e-mail...">
             <button id="checkButton">Sprawdź</button>
         </div>
         
         <div id="result" class="result">
-            <!-- Tutaj pojawią się wyniki -->
+            <!-- Wyniki pojawią się tutaj -->
+        </div>
+        
+        <div class="disclaimer">
+            <p>⚠️ Ta strona <u>nie przechowuje</u> żadnych danych. Wyniki są przetwarzane lokalnie.</p>
         </div>
     </div>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
