@@ -1,16 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', () => {
     const checkButton = document.getElementById('checkButton');
     const emailInput = document.getElementById('emailInput');
     const resultDiv = document.getElementById('result');
 
-    if (!checkButton || !emailInput || !resultDiv) {
-        console.error('Brak wymaganych elementów w DOM!');
-        return;
-    }
-
-    checkButton.addEventListener('click', checkEmail);
-
-    async function checkEmail() {
+    const checkEmail = async () => {
         const email = emailInput.value.trim();
         
         if (!validateEmail(email)) {
@@ -18,63 +11,86 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        showResult('🔍 Sprawdzam bezpieczeństwo adresu...');
+        showResult('<div class="loading">🔍 Sprawdzam bezpieczeństwo adresu...</div>');
 
         try {
-            const data = await checkXposedOrNot(email);
-            displayResult(email, data);
+            const data = await fetchBreaches(email);
+            displayResults(email, data);
         } catch (error) {
-            showResult(`❌ Błąd: ${error.message}`);
+            showResult(`❌ Wystąpił błąd: ${error.message}`);
         }
-    }
+    };
 
-    function validateEmail(email) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
-    }
+    const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-    async function checkXposedOrNot(email) {
-        const response = await fetch(`https://api.xposedornot.com/v1/check-email/${encodeURIComponent(email)}`);
-        
-        if (!response.ok) {
-            throw new Error('Problem z połączeniem. Spróbuj później.');
+    const fetchBreaches = async (email) => {
+        const response = await fetch(`https://haveibeenpwned.com/api/v2/breachedaccount/${encodeURIComponent(email)}`, {
+            headers: {
+                'User-Agent': 'BreachAlert/2.0'
+            }
+        });
+
+        if (response.status === 404) return [];
+        if (response.status === 429) {
+            await new Promise(resolve => setTimeout(resolve, 1500));
+            return fetchBreaches(email);
         }
-        
+        if (!response.ok) throw new Error(`API zwróciło status ${response.status}`);
+
         return response.json();
-    }
+    };
 
-    function displayResult(email, data) {
-        if (data.pwned) {
+    const displayResults = (email, breaches) => {
+        if (breaches.length === 0) {
             resultDiv.innerHTML = `
-                <div class="breach">
-                    <h2>⚠️ E-mail wyciekł!</h2>
-                    <p>Adres <b>${email}</b> pojawił się w <b>${data.count}</b> wyciekach.</p>
-                    <p>Ostatnia aktywność: ${data.last_seen || 'nieznana data'}</p>
-                    <h3>Zalecenia:</h3>
-                    <ul>
-                        <li>Zmień hasła na wszystkich kontach używających tego e-maila</li>
-                        <li>Włącz weryfikację dwuetapową (2FA)</li>
-                        <li>Uważaj na podejrzane wiadomości</li>
-                    </ul>
+                <div class="safe-result">
+                    <h2>🛡️ Brak wycieków!</h2>
+                    <p>Adres <b>${email}</b> nie został znaleziony w żadnych znanych wyciekach danych.</p>
                 </div>
             `;
-        } else {
-            resultDiv.innerHTML = `
-                <div class="safe">
-                    <h2>✅ Twój e-mail jest bezpieczny</h2>
-                    <p>Adres <b>${email}</b> nie został znaleziony w znanych wyciekach.</p>
-                    <h3>Dobre praktyki:</h3>
-                    <ul>
-                        <li>Używaj unikalnych haseł</li>
-                        <li>Regularnie sprawdzaj swoje konta</li>
-                        <li>Rozważ użycie menedżera haseł</li>
-                    </ul>
-                </div>
-            `;
+            return;
         }
-    }
 
-    function showResult(message) {
-        resultDiv.innerHTML = `<p>${message}</p>`;
-    }
+        let breachesHTML = `
+            <div class="breach-header">
+                <h2>⚠️ WYKRYTO WYCIEKI!</h2>
+                <p>Adres <b>${email}</b> został ujawniony w <b>${breaches.length}</b> wyciekach:</p>
+            </div>
+        `;
+
+        breaches.forEach(breach => {
+            breachesHTML += `
+                <div class="breach-card">
+                    <h3 class="breach-title">${breach.Title}</h3>
+                    <div class="breach-data">
+                        <span class="data-badge">📅 ${breach.BreachDate}</span>
+                        <span class="data-badge">👥 ${breach.PwnCount?.toLocaleString() || 'N/A'} kont</span>
+                    </div>
+                    <p><strong>Opis:</strong> ${breach.Description || 'Brak opisu'}</p>
+                </div>
+            `;
+        });
+
+        breachesHTML += `
+            <div class="recommendations">
+                <h3>🛡️ Zalecenia bezpieczeństwa:</h3>
+                <ul>
+                    <li>Natychmiast zmień hasła na wszystkich powiązanych kontach</li>
+                    <li>Włącz weryfikację dwuetapową (2FA)</li>
+                    <li>Użyj menedżera haseł (np. Bitwarden, KeePass)</li>
+                </ul>
+            </div>
+        `;
+
+        resultDiv.innerHTML = breachesHTML;
+    };
+
+    const showResult = (message) => {
+        resultDiv.innerHTML = message;
+    };
+
+    checkButton.addEventListener('click', checkEmail);
+    emailInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') checkEmail();
+    });
 });
