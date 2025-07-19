@@ -29,7 +29,7 @@ function validateEmail(email) {
 }
 
 async function fetchBreaches(email) {
-    const response = await fetch(`https://haveibeenpwned.com/api/v2/breachedaccount/${encodeURIComponent(email)}`, {
+    const response = await fetch(`https://haveibeenpwned.com/api/v3/breachedaccount/${encodeURIComponent(email)}`, {
         headers: {
             'User-Agent': 'BreachAlert/1.0' // WYMAGANE przez HIBP v2
         }
